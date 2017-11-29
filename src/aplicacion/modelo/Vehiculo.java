@@ -5,6 +5,7 @@
  */
 package aplicacion.modelo;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -16,15 +17,22 @@ public class Vehiculo extends Conductor {
     private final StringProperty matricula;
     private final StringProperty claseVehiculo;
 
+    public Vehiculo() {
+        this.matricula = new SimpleStringProperty("");
+        this.claseVehiculo = new SimpleStringProperty("");
+    }
+    
+    
+    
     public Vehiculo(StringProperty matricula, StringProperty claseVehiculo) {
         this.matricula = matricula;
         this.claseVehiculo = claseVehiculo;
     }
-
-    public Vehiculo(StringProperty matricula, StringProperty claseVehiculo, String nombre, String cedula, String fechaEntrada, String horaEntrada, String pagoPeaje, int tipoPago) {
-        super(nombre, cedula, fechaEntrada, horaEntrada, pagoPeaje, tipoPago);
-        this.matricula = matricula;
-        this.claseVehiculo = claseVehiculo;
+    
+    public Vehiculo(String matricula, String claseVehiculo, String nombre, String cedula, String fechaEntrada, String horaEntrada, double pagoPeaje, int tipoPago) {
+        super(nombre, cedula, pagoPeaje, tipoPago);
+        this.matricula = new SimpleStringProperty(matricula);
+        this.claseVehiculo =  new SimpleStringProperty(claseVehiculo);
     }
 
     public String getMatricula() {
@@ -39,7 +47,7 @@ public class Vehiculo extends Conductor {
         this.matricula.set(matricula);
     }
 
-    public void getClaseVehiculo(String claseVehiculo) {
+    public void setClaseVehiculo(String claseVehiculo) {
         this.claseVehiculo.set(claseVehiculo);
     }
 

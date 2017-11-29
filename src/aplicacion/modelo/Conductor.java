@@ -5,7 +5,11 @@
  */
 package aplicacion.modelo;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -19,19 +23,20 @@ public class Conductor {
     private final StringProperty cedula;
     private final StringProperty fechaEntrada;
     private final StringProperty HoraEntrada;
-    private final StringProperty pagoPeaje;
+    private final DoubleProperty pagoPeaje;
     private final IntegerProperty tipoPago;
     
     public Conductor() {
-        this(null, null, null, null, null, 0);
+        this(null, null, 0.0, 0);
     }
     
-    public Conductor(String nombre, String cedula, String fechaEntrada, String horaEntrada, String pagoPeaje, int tipoPago){
+    public Conductor(String nombre, String cedula, Double pagoPeaje, int tipoPago){
         this.nombre = new SimpleStringProperty(nombre);
         this.cedula = new SimpleStringProperty(cedula);
-        this.fechaEntrada = new SimpleStringProperty(fechaEntrada);
-        this.HoraEntrada = new SimpleStringProperty(horaEntrada);
-        this.pagoPeaje = new SimpleStringProperty(pagoPeaje);
+        this.fechaEntrada = new SimpleStringProperty(LocalDate.now().toString());
+        this.HoraEntrada = new SimpleStringProperty(LocalTime.now().getHour()+":"+LocalTime.now().getMinute()
+            + ":"+ LocalTime.now().getSecond());
+        this.pagoPeaje = new SimpleDoubleProperty(pagoPeaje);
         this.tipoPago = new SimpleIntegerProperty(tipoPago);
     }
 
@@ -68,7 +73,7 @@ public class Conductor {
         return HoraEntrada;
     }
 
-    public StringProperty getPagoPeajeProperty() {
+    public DoubleProperty getPagoPeajeProperty() {
         return pagoPeaje;
     }
 
@@ -84,11 +89,11 @@ public class Conductor {
         this.HoraEntrada.set(horaEntrada);
     }
 
-    public void setPagoPeaje(String pagoPeaje) {
+    public void setPagoPeaje(double pagoPeaje) {
         this.pagoPeaje.set(pagoPeaje);
     }
 
-    public void getTipoPago(int tipoPago) {
+    public void setTipoPago(int tipoPago) {
         this.tipoPago.set(tipoPago);
     }
 
@@ -100,7 +105,7 @@ public class Conductor {
         return HoraEntrada.get();
     }
 
-    public String getPagoPeaje() {
+    public double getPagoPeaje() {
         return pagoPeaje.get();
     }
 
