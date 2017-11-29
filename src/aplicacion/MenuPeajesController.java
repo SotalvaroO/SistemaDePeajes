@@ -6,7 +6,12 @@
 package aplicacion;
 
 import aplicacion.modelo.Vehiculo;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -99,6 +104,31 @@ public class MenuPeajesController implements Initializable {
 
     @FXML
     private void exportarInformePDF() {
+        try {
+            String informe = "";
+            List<Vehiculo> showing = conductorTable.getItems();
+            for (Vehiculo j : showing) {
+                informe += "Fecha: " + j.getFechaEntrada() + " Nombre: " + j.getNombre() + " Cédula: " +
+                        j.getCedula() + " Matrícula: " + j.getMatricula() + " Clase de vehículo: " +
+                        j.getClaseVehiculo() + " Monto cancelado: " + j.getPagoPeaje() + "$" + "\n";
+
+            }
+            FileOutputStream archivo = new FileOutputStream("PDF/informe.pdf");
+            Document doc = new Document();
+
+            PdfWriter.getInstance(doc, archivo);
+            doc.open();
+            doc.add(new Paragraph(informe));
+            doc.close();
+            PdfWriter.getInstance(doc, archivo);
+        } catch (Exception a) {
+
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Fichero PDF creado con exito!");
+        alert.setHeaderText(null);
+        alert.setContentText("El archivo fue generado en la Ruta PDFS/Informes");
+        alert.show();
     }
     
     private void showVehiculoDetails(Vehiculo vehiculo) {

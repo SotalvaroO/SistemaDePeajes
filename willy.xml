@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Conductor>
     <Datos>
-        <cedula>321</cedula>
+        <cedula>123</cedula>
         <fechaEntrada>2017-11-28</fechaEntrada>
-        <horaEntrada>20:17:13</horaEntrada>
-        <nombre>Santiago</nombre>
+        <horaEntrada>20:23:46</horaEntrada>
+        <nombre>sdas</nombre>
         <pagoPeaje>17927.0</pagoPeaje>
         <claseVehiculo>3</claseVehiculo>
-        <matricula>123</matricula>
+        <matricula>asdas</matricula>
     </Datos>
 </Conductor>
